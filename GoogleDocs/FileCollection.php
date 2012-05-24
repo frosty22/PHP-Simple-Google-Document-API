@@ -15,7 +15,7 @@ class FileCollection implements \Iterator {
 			&& (!$object instanceof \GoogleDocs\FolderItem))
 			$this->results[] = $object;
 		else
-			throw new \Nette\ArgumentOutOfRangeException("Invalid argument of object type.");
+			throw new \OutOfRangeException("Invalid argument of object type.");
 	}
 	
     /**************************** INTERATOR INTERFACE **************************/
