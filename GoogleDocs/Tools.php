@@ -7,7 +7,7 @@ class Tools
 {
 
 	/**
-	 * Parse folder name from URL
+	 * Parse folder id from URL
 	 * @param string $url
 	 * @return string|false 
 	 */
@@ -19,4 +19,17 @@ class Tools
 		return false;
 	}
 
+	/**
+	 * Parse file id from URL
+	 * @param string $url
+	 * @return string|false 
+	 */
+	public static function parseFileIdFromUrl($url)
+	{
+		if (preg_match("/id=(.*)$/i", $url, $match)) {
+			return $match[1];
+		}
+		return false;		
+	}
+	
 }

@@ -23,7 +23,7 @@ abstract class BaseItem {
 	 * Get ID of folder
 	 * @var string 
 	 */
-	private $id;
+	protected $id;
 	
 	/**
 	 * Authorization
@@ -35,25 +35,25 @@ abstract class BaseItem {
 	 * Published timestamp
 	 * @var \DateTime
 	 */
-	private $published;
+	protected $published;
 	
 	/**
 	 * Last update timestamp
 	 * @var \DateTime 
 	 */
-	private $updated;
+	protected $updated;
 	
 	/**
 	 * Title of document
 	 * @var string
 	 */
-	private $title;
+	protected $title;
 	
 	/**
 	 * Content (list of contents)
 	 * @var array
 	 */
-	private $content = array();
+	protected $content = array();
 	
 	/**
 	 * URL of HTML content
@@ -65,7 +65,7 @@ abstract class BaseItem {
 	 * List of links
 	 * @var array	
 	 */
-	private $links = array(
+	protected $links = array(
 		"parent" => null,
 		"edit" => null,
 		"preview" => null,
@@ -77,19 +77,19 @@ abstract class BaseItem {
 	 * Raw output of thumbnal
 	 * @var string
 	 */
-	private $thumbnail;
+	protected $thumbnail;
 	
 	/**
 	 * Name of author
 	 * @var string
 	 */
-	private $author_name;
+	protected $author_name;
 	
 	/**
 	 * Email of author
 	 * @var string
 	 */
-	private $author_email;
+	protected $author_email;
 	
 	/**
 	 * Parse element and create object
@@ -98,7 +98,6 @@ abstract class BaseItem {
 	 */
 	public function __construct(\GoogleDocs\Authorization $auth, \SimpleXMLElement $element) {
 		$this->authorization = $auth;
-		
 		$this->published = new \DateTime($element->published);
 		$this->updated = new \DateTime($element->updated);
 		$this->title = $element->title;
@@ -135,9 +134,9 @@ abstract class BaseItem {
 	 * @return string
 	 */
 	public function getId()
-	{
+	{ 
 		if (!isset($this->id))
-			$this->id = \GoogleDocs\Tools::parseFolderIdFromUrl($this->content_url);
+			$this->id = \GoogleDocs\Tools::parseFileIdFromUrl($this->content_url);
 		return $this->id;
 	}
 	
